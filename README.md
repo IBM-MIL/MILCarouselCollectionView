@@ -20,7 +20,7 @@ Simply copy the **`MILCarouselCollectionView`** **folder** into your Xcode proje
 1. `MILCarouselCollectionViewCell.xib`
 
 <br>
-## Adding MILCarouselCollectionView To A View Controller
+## Adding MILCarouselCollectionView to a View Controller
 
 For both storyboard and programmatic implementations, you can reference the `ViewController.swift`file in the example xcode project to see an example in context.
 

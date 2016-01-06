@@ -58,22 +58,22 @@ For both storyboard and programmatic implementations, you can reference the `Vie
 <br>
 ### Storyboard Implementation
 
-1. On the view controller you would like to add the MILCarouselCollectionView to, add a `Container View` to the view controller's view and delete the `UIViewController` storyboard auto embeded in the container view. Add the appropriate autolayout constraints to the container view so that it displays to your liking within the view controller's view. The height and width you make the container view will define the height and width of the MILCarouselCollectionView as well as the height and width of the collection view cells in the MILCarouselCollectionView. Your storyboard should now look like this: <p align="center">
+1. On the UIViewController you would like to add the MILCarouselCollectionView to, add a `Container View` to UIViewController's view and delete the new UIViewController storyboard auto embeded in the container view. Add the appropriate autolayout constraints to the container view so that it displays to your liking within the UIViewController's view. The height and width you make the container view will define the height and width of the MILCarouselCollectionView as well as the height and width of the UICollectionViewCells in the MILCarouselCollectionView. Your storyboard should now look like this: <p align="center">
 <img src="README_ASSETS/storyboard_implementation_step1.png"  alt="Drawing" width=600 border=0 /></p>
-1. Next add a `UICollectionViewController` to the storyboard. Select this collection view controller on storyboard so that it's highlighted and then select the `Identity Inspector` of the `Utilies` sidebar. Under "Custom Class" make the UICollectionViewController a subclass of `MILCarouselCollectionViewController`<p align="center">
+1. Next add a `UICollectionViewController` to the storyboard. Select this UICollectionViewController on storyboard so that it's highlighted and then select the `Identity Inspector` of the `Utilies` sidebar. Under "Custom Class" make the UICollectionViewController a subclass of `MILCarouselCollectionViewController`<p align="center">
 <img src="README_ASSETS/identity_inspector.png"  alt="Drawing" height=150 border=0 /></p>
-1. Hold down the control key while you click and drag from the container view on the view controller to the UICollectionViewController (now a MILCarouselCollectionViewController). A dialog box will show asking you what kind of segue you would like to choose, select `Embed`.<p align="center">
+1. Hold down the control key while you click and drag from the container view on the UIViewController to the UICollectionViewController (now a MILCarouselCollectionViewController). A dialog box will show asking you what kind of segue you would like to choose, select `Embed`.<p align="center">
 <img src="README_ASSETS/embed_segue.png"  alt="Drawing" width=200 border=0 /></p>Your storyboard should now look like this:<p align="center">
 <img src="README_ASSETS/after_adding_embeded_segue.png"  alt="Drawing" width=700 border=0 /></p>
-1. Select the segue arrow that was just added that goes from the Container View to the MILCarouselCollectionViewController. In the `Attributes Inspector` change the `Storyboard Embed Segue Identifier` to  `carouselCollectionView`.<p align="center">
+1. Select the segue arrow that was just added that goes from the container view to the MILCarouselCollectionViewController. In the `Attributes Inspector` change the `Storyboard Embed Segue Identifier` to  `carouselCollectionView`.<p align="center">
 <img src="README_ASSETS/embed_segue_identifier.png"  alt="Drawing" height=125 border=0 /></p>
-1. Go to the swift file that represents the UIViewController that has the Container View you added. Create a property at the top of the file 
+1. Go to the swift file that represents the UIViewController that has the container view you added. Create a property at the top of the file 
 
 	```swift
 	var storyboardCarouselCollectionView : MILCarouselCollectionViewController!
 	```
         
-1. Add a prepare for segue method to your view controller if it isn't already added and add the following lines to get the instance of the `MILCarouselCollectionViewController` you added on the storyboard and to save this instance to the view controller's `storyboardCarouselCollectionView` property
+1. Add a prepare for segue method to your UIViewController if it isn't already added and add the following lines to get the instance of the `MILCarouselCollectionViewController` you added on the storyboard and to save this instance to the UIVieController's `storyboardCarouselCollectionView` property
 
 	```swift
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -89,7 +89,7 @@ For both storyboard and programmatic implementations, you can reference the `Vie
 
 ###Set Placeholder Cell Image  
     
-A placeholder cell is a cell that is displayed in the MILCarouselCollectionView while it waits to be passed data from its parent view controller, this can be useful if there is a delay while retrieving data from a server call. By default, it will display one placeholder cell that it will scroll back and forth to. When the MILCarouselCollectionView finally receieves an array of data, a placeholder image is displayed in each cell of the collection view while we wait for a cell to resolve a url to an image. The following code snippets can be used after you init a MILCarouselCollectionView programmatically, or once you get reference to the storyboard MILCarouselCollectionView in the prepareForSegue method. (Examples shown in the example project)
+A placeholder cell is a cell that is displayed in the MILCarouselCollectionView while it waits to be passed data from its parent view controller, this can be useful if there is a delay while retrieving data from a server call. By default, it will display one placeholder cell that it will scroll back and forth to. When the MILCarouselCollectionView finally receives an array of data, a placeholder image is displayed in each cell of the collection view while we wait for a cell to resolve a url to an image. The following code snippets can be used after you init a MILCarouselCollectionView programmatically, or once you get reference to the storyboard MILCarouselCollectionView in the prepareForSegue method. (Examples shown in the example project). It should be noted that the following code snipped should be called before we passed data to the MILCarouselCollectionView
 
 To set the placeholder item image to a locally stored image within the Xcode project, we pass it the name:
 
@@ -98,9 +98,9 @@ self.storyboardCarouselCollectionView.localPlaceHolderImageName = "placeholder_n
 ```
 	
 <br>	
-###Passing Data to the MILCarouselCollectionViewController
+###Passing Data to the MILCarouselCollectionView
 		
-By default, the MILCarouselCollectionViewController expects to handle an array of strings that represent a URL with its built in asychronous image url downloading and caching mechanisms. However, it should be noted that it also supports handling image url strings using the [SDWebImage](https://github.com/rs/SDWebImage) framework. In addition, the MILCarouselCollectionViewController can handle an array of strings that represent names of locally stored images in the Xcode project.  
+By default, a MILCarouselCollectionViewControler expects to handle an array of strings that represent a URL with its built in asychronous image url downloading and caching mechanisms. However, it should be noted that it also supports handling image url strings using the [SDWebImage](https://github.com/rs/SDWebImage) framework. In addition, a MILCarouselCollectionViewController can handle an array of strings that represent names of locally stored images in the Xcode project.  
 
 
 Chances are when you try to resolve image URL's to images you will get the following warning and you won't be able to download the images:
@@ -123,29 +123,29 @@ To fix this, go to your `info.plist` file and add the following:
 
 This of course is the lazy way to fix the problem. Eventually you would want to specify which specific web domains you want the app to accept. For more information about this try [this article](http://www.neglectedpotential.com/2015/06/working-with-apples-application-transport-security)
 
-- To pass an array of `image url strings` to the collection view and have the collection view handle this using its **built in asychronous image url downloading and caching** we can do:
+- To pass an array of `image url strings` to the collection view and have the MILCarouselCollectionView handle this using its **built in asychronous image url downloading and caching** we can do:
 
 	```	swift
-	self.carouselCollectionView.setToHandleImageURLStrings()
+	self.carouselCollectionViewController.setToHandleImageURLStrings()
 		    
 	let imageURLArray = [String]()
 	//populate this array with url strings
 		    
 	//pass array of strings that represent URLs of images
-	self.carouselCollectionView.refresh(imageURLArray)
+	self.carouselCollectionViewController.refresh(imageURLArray)
 	
 	```
 <br>		    
-- To pass an array of `image url strings` to the collection view and have the collection view handle this using the **[SDWebImage](https://github.com/rs/SDWebImage)** framework we can do:
+- To pass an array of `image url strings` to the collection view and have the MILCarouselCollectionView handle this using the **[SDWebImage](https://github.com/rs/SDWebImage)** framework we can do:
 
 	```	swift	
-	self.carouselCollectionView.setToHandleImageURLStringsUsingSDWebImage()
+	self.carouselCollectionViewController.setToHandleImageURLStringsUsingSDWebImage()
 	 		
 	let imageURLArray = [String]()
 	//populate this array with url strings
 		    
 	//pass array of strings that represent URLs of images
-	self.carouselCollectionView.refresh(imageURLArray)
+	self.carouselCollectionViewController.refresh(imageURLArray)
 	
 	```
 	
@@ -167,36 +167,36 @@ private func setUpCellWithImageURLUsingSDWebImage(cell : MILCarouselCollectionVi
     }
 ```	 
 <br>
-- To pass an array of `strings that represent locally stored images` to the collection view we can do:
+- To pass an array of `strings that represent locally stored images` to the MILCarouselCollectionView we can do:
 
 	```swift
-	self.carouselCollectionView.setToHandleLocalImageNameStrings()
+	self.carouselCollectionViewController.setToHandleLocalImageNameStrings()
 	 		
 	let imageNameArray = [String]()
 	//populate this array with locally stored image names
 		    
 	//pass array of strings that represent names of locally stored images 
-	self.carouselCollectionView.refresh(imageNameArray)
+	self.carouselCollectionViewController.refresh(imageNameArray)
 	```
 
 <br>
 ## Customizing MILCarouselCollectionView
 
-###Changing the Height and Width of the Collection View Cells
+###Changing the Height and Width of the MILCarouselCollectionViewCells
 
-- The `height` and `width` of a collection view cell changes with respect to the collection view controller's view height and width. 
-	- If you are dealing with a programmatic implementation of the MILCarouselCollectionViewController, know that when you set the frame of the collection view controller's view, this will also be the height and width of each cell in the collection view
-	- If you are dealing with a storyboard implementation of the MILCarouselCollectionViewController, changing the height and width of the container view that holds the collection view controller will also set the height and width of each cell in the collection view
+- The `height` and `width` of a MILCarouselCollectionViewCell changes with respect to the MILCarouselCollectionViewController's view height and width. 
+	- If you are dealing with a programmatic implementation of the MILCarouselCollectionViewController, know that when you set the frame of the MILCarouselCollectionViewController, this will also be the height and width of each cell in the MILCarouselCollectionView
+	- If you are dealing with a storyboard implementation of the MILCarouselCollectionViewController, changing the height and width of the container view that holds the MILCarouselCollectionViewController will also set the height and width of each cell in the MILCarouselCollectionView
 
 <br>
 ###Changing the Autoscroll Timer Duration
 
 By default, the MILCarouselCollectionView autoscrolls to a new cell every 4 seconds. Whenever the user touches the MILCarouselCollectionView, the autoscroll timer is reset.
 
-To change the duration of the autoscroll timer you can do the following after you initialize the MILCarouselCollectionViewController:
+To change the duration of the autoscroll timer you can do the following after you initialize a MILCarouselCollectionViewControllerbut before you pass it data:
 
 ```swift
-self.carouselCollectionView.setAutoScrollTimerDuration(n)
+self.carouselCollectionViewController.setAutoScrollTimerDuration(n)
 
 ```
 
@@ -205,7 +205,7 @@ self.carouselCollectionView.setAutoScrollTimerDuration(n)
 
 By default, the MILCarouselCollectionView autoscrolls every 4 seconds to a new cell. 
 
-To disable autoscrolling, do the following after you intialize the MILCarouselCollectionViewController:
+To disable autoscrolling, do the following after you intialize the MILCarouselCollectionViewController, but before you pass it data:
 
 ```swift
 self.carouselCollectionViewController.disableAutoScrolling()
@@ -215,7 +215,7 @@ self.carouselCollectionViewController.disableAutoScrolling()
 ###Disable Circular Scrolling
 By default, when the MILCarouselCollectionView is at the last cell in the collection view, if you scroll past this cell, it will scroll back to the first cell in the collection view. 
 
-To disable circular scrolling, do the following after you initialize the MILCarouselCollectionViewController
+To disable circular scrolling, do the following after you initialize the MILCarouselCollectionViewController, but before you pass it data:
 
 ```swift
 self.carouselCollectionViewController.disableCircularScrolling()
@@ -223,16 +223,16 @@ self.carouselCollectionViewController.disableCircularScrolling()
 
 
 <br>
-###Changing the Kind of Data the Collection View Can Handle
+###Changing the Kind of Data the MILCarouselCollectionView Can Handle
 
-To change the kind of data the collection view can handle, first you will need to modify the dataArray property in the `MILCarouselCollectionViewController.swift` file to be an array of different data types:
+To change the kind of data the collection view can handle, first you will need to modify the `dataArray` property in the `MILCarouselCollectionViewController.swift` file to be an array of different data types:
 
 ```swift
 var dataArray : [MyDataObject] = []
 
 ```
 
-As well you will need to change the way the collection view controller prepares the cell in the cellForItemAtIndexPath method
+As well you will need to change the way the MILCarouselCollectionViewController prepares the cell in the cellForItemAtIndexPath method:
 
 ```swift
 override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -246,9 +246,9 @@ override func collectionView(collectionView: UICollectionView, cellForItemAtInde
 ```
 
 <br>
-###Changing the Collection View Cell's UI
+###Changing the MILCarouselCollectionViewCell's UI
 
-To change the UI of the collection view cell, you can do this by modifying the `MILCarouselCollectionViewCell.xib` file. By default, the collection view cell only has an image view that stretches accross the whole cell. Of course, with modifying the collection view cell's UI, comes changing the way we prepare and set up the data in the cell using the cellForItemAtIndexPath method.
+To change the UI of the MILCarouselCollectionViewCell, you can do this by modifying the `MILCarouselCollectionViewCell.xib` file. By default, the collection view cell only has an image view that stretches accross the whole cell. Of course, with modifying the collection view cell's UI, comes changing the way we prepare and set up the data in the cell using the cellForItemAtIndexPath method.
 
 <br>
 ## Requirements

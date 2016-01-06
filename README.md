@@ -73,7 +73,7 @@ For both storyboard and programmatic implementations, you can reference the `Vie
 	var storyboardCarouselCollectionViewController : MILCarouselCollectionViewController!
 	```
         
-1. Add a prepare for segue method to your UIViewController if it isn't already added and add the following lines to get the instance of the `MILCarouselCollectionViewController` you added on the storyboard and to save this instance to the UIVieController's `storyboardCarouselCollectionViewController` property
+1. Add a prepare for segue method to your UIViewController if it isn't already added and add the following lines to get the instance of the `MILCarouselCollectionViewController` you added on the storyboard and to save this instance to the UIViewController's `storyboardCarouselCollectionViewController` property
 
 	```swift
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -89,12 +89,12 @@ For both storyboard and programmatic implementations, you can reference the `Vie
 
 ###Set Placeholder Cell Image  
     
-A placeholder cell is a cell that is displayed in the MILCarouselCollectionView while the MILCarouselCollectionViewController waits to be passed data from its parent view controller, this can be useful if there is a delay while retrieving data from a server call. By default, it will display one placeholder cell that it will scroll back and forth to. When a MILCarouselCollectionViewController finally receives an array of data, a placeholder image is displayed in each cell of the  MILCarouselCollectionView while we wait for a cell to resolve a url to an image. The following code snippets can be used after you init a MILCarouselCollectionViewController programmatically, or once you get reference to the storyboard MILCarouselCollectionViewController in the prepareForSegue method. (Examples shown in the example project). It should be noted that the following code snippet should be called before we passed data to the MILCarouselCollectionViewController.
+A placeholder cell is a cell that is displayed in the MILCarouselCollectionView while the MILCarouselCollectionViewController waits to be passed data from its parent view controller, this can be useful if there is a delay while retrieving data from a server call. By default, it will display one placeholder cell that it will scroll back and forth to. When a MILCarouselCollectionViewController finally receives an array of data, a placeholder image is displayed in each cell of the  MILCarouselCollectionView while we wait for a cell to resolve a url to an image. The following code snippets can be used after you init a MILCarouselCollectionViewController programmatically, or once you get reference to the storyboard MILCarouselCollectionViewController in the prepareForSegue method. (Examples shown in the example project). It should be noted that the following code snippet should be called before we pass data to the MILCarouselCollectionViewController.
 
 To set the placeholder item image to a locally stored image within the Xcode project, we pass it the name:
 
 ```	swift
-self.storyboardCarouselCollectionViewController.localPlaceHolderImageName = "placeholder_name"
+self.storyboardCarouselCollectionViewController.localPlaceHolderImageName = "image_name"
 ```
 	
 <br>	
@@ -123,7 +123,7 @@ To fix this, go to your `info.plist` file and add the following:
 
 This of course is the lazy way to fix the problem. Eventually you would want to specify which specific web domains you want the app to accept. For more information about this try [this article](http://www.neglectedpotential.com/2015/06/working-with-apples-application-transport-security)
 
-- To pass an array of `image url strings` to a MILCarouselCollectionViewController and it handle this using its **built in asychronous image url downloading and caching** we can do:
+- To pass an array of `image url strings` to a MILCarouselCollectionViewController and have it handle this using its **built in asychronous image url downloading and caching** we can do:
 
 	```	swift
 	self.carouselCollectionViewController.setToHandleImageURLStrings()

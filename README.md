@@ -20,20 +20,20 @@ Simply copy the **`MILCarouselCollectionView`** **folder** into your Xcode proje
 1. `MILCarouselCollectionViewCell.xib`
 
 <br>
-## Adding MILCarouselCollectionView to a View Controller
+## Adding a MILCarouselCollectionViewContoller to a UIViewController
 
 For both storyboard and programmatic implementations, you can reference the `ViewController.swift`file in the example xcode project to see an example in context.
 
 <br>
 ### Programmatic Implementation 
 
-1. In the view controller class file you would like to add a programmatic MILCarouselCollectionViewController to, create a property at the top of the file:
+1. In the UIViewController class file you would like to add a programmatic MILCarouselCollectionViewController to, create a property at the top of the file:
 
 	```swift
 	var programmaticCarouselCollectionViewController : MILCarouselCollectionViewController!
 ```
     
-1. To initialize an instance of MILCarouselCollectionViewController programmatically and set it the view controller's `programmaticCarouselCollectionViewController` property we do:
+1. To initialize an instance of MILCarouselCollectionViewController programmatically and set it the UIViewController's `programmaticCarouselCollectionViewController` property we do:
 
 	```swift
 	let flow = MILCarouselCollectionViewFlowLayout()
@@ -47,7 +47,7 @@ For both storyboard and programmatic implementations, you can reference the `Vie
 ```
  		
  		
-1. To add the MILCarouselCollectionViewController's view to the view controller's view we do:
+1. To add the MILCarouselCollectionViewController's view to the UIViewController's view we do:
 
 	```swift
 	self.addChildViewController(self.programmaticCarouselCollectionViewController)
@@ -58,7 +58,7 @@ For both storyboard and programmatic implementations, you can reference the `Vie
 <br>
 ### Storyboard Implementation
 
-1. On the UIViewController you would like to add the MILCarouselCollectionView to, add a `Container View` to UIViewController's view and delete the new UIViewController storyboard auto embeded in the container view. Add the appropriate autolayout constraints to the container view so that it displays to your liking within the UIViewController's view. The height and width you make the container view will define the height and width of the MILCarouselCollectionView as well as the height and width of the UICollectionViewCells in the MILCarouselCollectionView. Your storyboard should now look like this: <p align="center">
+1. On the UIViewController you would like to add the MILCarouselCollectionView to, add a `Container View` to UIViewController's view and delete the new UIViewController storyboard auto embeded in the container view. Add the appropriate autolayout constraints to the container view so that it displays to your liking within the UIViewController's view. The height and width you make the container view will define the height and width of the MILCarouselCollectionView as well as the height and width of the MILCarouselCollectionViewCells in the MILCarouselCollectionView. Your storyboard should now look like this: <p align="center">
 <img src="README_ASSETS/storyboard_implementation_step1.png"  alt="Drawing" width=600 border=0 /></p>
 1. Next add a `UICollectionViewController` to the storyboard. Select this UICollectionViewController on storyboard so that it's highlighted and then select the `Identity Inspector` of the `Utilies` sidebar. Under "Custom Class" make the UICollectionViewController a subclass of `MILCarouselCollectionViewController`<p align="center">
 <img src="README_ASSETS/identity_inspector.png"  alt="Drawing" height=150 border=0 /></p>
@@ -70,15 +70,15 @@ For both storyboard and programmatic implementations, you can reference the `Vie
 1. Go to the swift file that represents the UIViewController that has the container view you added. Create a property at the top of the file 
 
 	```swift
-	var storyboardCarouselCollectionView : MILCarouselCollectionViewController!
+	var storyboardCarouselCollectionViewController : MILCarouselCollectionViewController!
 	```
         
-1. Add a prepare for segue method to your UIViewController if it isn't already added and add the following lines to get the instance of the `MILCarouselCollectionViewController` you added on the storyboard and to save this instance to the UIVieController's `storyboardCarouselCollectionView` property
+1. Add a prepare for segue method to your UIViewController if it isn't already added and add the following lines to get the instance of the `MILCarouselCollectionViewController` you added on the storyboard and to save this instance to the UIVieController's `storyboardCarouselCollectionViewController` property
 
 	```swift
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
  	   if(segue.identifier == "carouselCollectionView"){
- 	   		self.storyboardCarouselCollectionView = 
+ 	   		self.storyboardCarouselCollectionViewController = 
       		segue.destinationViewController as! MILCarouselCollectionViewController
     	}
 	}
@@ -94,7 +94,7 @@ A placeholder cell is a cell that is displayed in the MILCarouselCollectionView 
 To set the placeholder item image to a locally stored image within the Xcode project, we pass it the name:
 
 ```	swift
-self.storyboardCarouselCollectionView.localPlaceHolderImageName = "placeholder_name"
+self.storyboardCarouselCollectionViewController.localPlaceHolderImageName = "placeholder_name"
 ```
 	
 <br>	
